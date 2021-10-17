@@ -2,19 +2,30 @@
 #include<stdlib.h>
 #include<typeinfo>
 int main(int argc, char** argv){
-	if(argc%2!=0){
-		printf("Doi so khong phai so nguyen\n");
+	char* a[100];
+	int n=0;
+	for(int i=0;i<argc;i++){
+		if((argv[i][0]>='a'&&argv[i][0]<='z')||(argv[i][0]>='A'&&argv[i][0]<='z')){
+			continue;
+		}
+		else{
+			a[n++]=argv[i];
+		}
 	}
-	else{
-		int tong,n;
-		for(int i =atoi(argv[0]); i<atoi(argv[n-1]); i++)
-			for(int j=atoi(argv[i+1]);j<atoi(argv[n]); j++){
-				if(argv[i] >argv[j])
-					tong = atoi(argv[i]);
-					argv[i] = argv[j];
-					argv[j] = argv[tong];
-				}
-				printf("S=%d\n",tong);
+	for(int i=1;i<n-1;i++){
+		for(int j=i+1;j<n;j++){
+			if(atoi(a[i])>atoi(a[j])){
+				char* tmp = a[i];
+				a[i]=a[j];
+				a[j]=tmp;
+			}
+		}
 	}
+	
+	printf("Day tang ");
+	for(int i=1;i<n;i++){
+		printf("%s ",a[i]);
+	}
+	printf("\n");
 	return 0;
 }
